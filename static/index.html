@@ -137,7 +137,7 @@ Oe6lSHTplzRc0QPTat5+mQ==
         </div>
     </div>
     <ul id="messages"></ul>
-    <form action="">
+    <form action="" id="formulario">
         <input id="m" autocomplete="off" /><button type="button" id="boton-enviar">Send</button>
     </form>
 
@@ -153,7 +153,8 @@ Oe6lSHTplzRc0QPTat5+mQ==
         var socket = io();
         var aesKey;
         // Evento del boton enviar y disparador de los mensajes al servidor
-        document.getElementById('boton-enviar').addEventListener('click', () => {
+        document.getElementById('formulario').addEventListener('submit', e => {
+            e.preventDefault();
             const message = document.getElementById('m').value;
             // Enviar al servidor mensaje en RSA
             rsaWrapper.publicEncrypt(document.getElementById('server_public').value, message).then(function (encrypted) {
